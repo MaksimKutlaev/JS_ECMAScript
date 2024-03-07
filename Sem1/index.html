@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="add">ADD</button>
+    <button id="subtract">Subtract</button>
+
+    <script>
+        //1
+        //1.1
+        // const arr1 = [1, 2, 3];
+        // const arr2 = [4, 5, 6];
+        // const mergeArr = [...arr1, ...arr2];
+
+        // function mergeArrs(arr1, arr2) {
+        //     return [...arr1, ...arr2];
+        // }
+
+        // console.log(mergeArr);
+
+        //1.2
+        // const arr3 = [1, 2, 3, 2, 4, 1, 5];
+        // const mergeArr2 = [...arr3];
+
+        // console.log(mergeArr2);
+
+        // const arr4 = mergeArr2.filter((item, index) => {
+        //     return mergeArr2.indexOf(item) === index
+        // });
+        // console.log(arr4);
+
+        //2
+        //2.1
+            function getEvenNumbers(arr) {
+                return arr.filter(num => num % 2 === 0);
+            }
+
+
+        //2.2
+            function calculateAverage(arr) {
+                //reduce - приминяем фуекцию к каждому элементу слева на право
+                // 0 - начальное значение аккумулятора
+                const sum = arr.reduce((acc, num) => acc+num, 0);
+                return sum / arr.length;
+            }
+
+        //2.3
+            function capitalizeFirstLetter(str) {
+                //split - разбиваем строку
+                //map - применяем к каждому элементу функции, которую передаем
+                //join - объеденяем в одну строку
+                return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            }
+
+            const numbers = [1, 2, 3, 4, 5, 6];
+            console.log(getEvenNumbers(numbers)); // [2,4,6]
+            console.log(calculateAverage(numbers)); //3.5
+            console.log(capitalizeFirstLetter('hello qwerty')); // Hello Qwerty
+
+        //3
+            function createCalculator(initiaValue) {
+                let value = initiaValue;
+
+                return {
+                    add: function(num) {
+                        value += num;
+                        console.log(value);
+                    },
+                    subtract: function(num) {
+                        value -= num;
+                        console.log(value);
+                    },
+                    getValue: function() {
+                        return value;
+                    }
+                };
+            }
+
+            let calculator = createCalculator(10);
+
+            document.getElementById('add').addEventListener('click', function() {
+                calculator.add(5);
+            });
+
+            document.getElementById('subtract').addEventListener('click', function() {
+                calculator.subtract(3);
+            });
+
+            //5
+
+            function createPasswordChecker(length) {
+                return function(password) {
+                return password.length <= length;
+                };
+            }
+
+            const validPassword = createPasswordChecker(8);
+            console.log(validPassword('password'));
+            console.log(validPassword('secret'));
+    </script>
+</body>
+</html>

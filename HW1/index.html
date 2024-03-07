@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="test" id="root">
+        <div class="child1">
+            <div class="child1_1"></div>
+            <div class="child1_2">
+                <div class="child_last"></div>
+            </div>
+        </div>
+        <div class="child2">
+            <div class="child2_1"></div>
+            <div class="child2_2">
+                <div class="child_last"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //1
+        const arr = [1, 5, 7, 9];
+        const minValue = Math.min(...arr);
+
+        //2
+        const createCounter = (initNum) => {
+            return {
+                increment: () => {
+                    initNum++
+                },
+                decrement: () => {
+                    initNum--
+                },
+                getValue: () => {
+                    return initNum
+                }
+            }
+        }
+
+        let counter = createCounter(5);
+        counter.increment();
+        console.log(counter.getValue());
+        counter.decrement();
+        console.log(counter.getValue());
+
+        //3
+
+        let searchEl =[];
+
+        function findElementByClass(rootEl, classEl) {
+            if (rootEl.hasChildNodes()) {
+                for (let element of rootEl.children) {
+                    if (element.className === classEl) {
+                        searchEl.push(element);
+                        if (searchEl[0].className !== classEl) {
+                            searchEl = [];
+                            searchEl.push(element);
+                        }
+                    }
+                    findElementByClass(element, classEl);
+                }
+            }
+            return searchEl[0];
+        }
+
+        const rootElement = document.getElementById('root');
+        const targetElement = findElementByClass(rootElement, 'child_last');
+        console.log(targetElement);
+    </script>
+</body>
+</html>
