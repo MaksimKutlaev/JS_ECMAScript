@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW3</title>
+</head>
+<body>
+
+    <script>
+        //1.
+        class Employee {
+            constructor(name) {
+                this.name = name;
+            }
+
+            displayInfo() {
+                console.log(this.name);
+            }
+        }
+
+        class Manager extends Employee {
+            constructor(name, department) {
+                super(name);
+                this.department = department;
+            }
+
+            displayInfo() {
+                console.log(this.name, this.department);
+            }
+        }
+
+        const employee1 = new Employee('Jonh Smith');
+        employee1.displayInfo();
+        const manager1 = new Manager('Jane Doe', 'Sales');
+        manager1.displayInfo();
+
+
+        //2.
+        class Product {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+        }
+
+        class Order {
+            constructor(orederNumber, products) {
+                this.orederNumber = orederNumber;
+                this.products = [];
+            }
+
+            addProduct(product) {
+                this.products.push(product);
+            }
+            getTotalPrice() {
+                let cost = 0;
+                for (let product in this.products) {
+                    cost += this.products[product].price;
+                }
+                return cost;
+            }
+        }
+
+        const order = new Order(12345);
+        const product1 = new Product('Phone', 500);
+        order.addProduct(product1);
+        const product2 = new Product("Headphones", 100);
+        order.addProduct(product2);
+        console.log(order.getTotalPrice());
+
+    </script>
+    
+</body>
+</html>
